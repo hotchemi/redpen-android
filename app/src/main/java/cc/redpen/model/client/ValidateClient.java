@@ -1,6 +1,8 @@
-package cc.redpen.client;
+package cc.redpen.model.client;
 
 import android.util.Log;
+import cc.redpen.Application;
+import cc.redpen.R;
 import com.squareup.okhttp.*;
 
 import java.io.IOException;
@@ -20,7 +22,7 @@ public class ValidateClient {
                 .add("document", document)
                 .build();
         Request request = new Request.Builder()
-                .url("http://httpbin.org/post")
+                .url(Application.getContext().getString(R.string.redpen_url))
                 .post(requestBody)
                 .build();
         String result = null;

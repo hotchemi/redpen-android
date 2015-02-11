@@ -1,10 +1,13 @@
-package cc.redpen.loader;
+package cc.redpen.model.loader;
 
 import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
-import cc.redpen.client.ValidateClient;
-import cc.redpen.entity.ValidateResult;
-import cc.redpen.helper.GsonConverter;
+import cc.redpen.model.entity.Error;
+import cc.redpen.model.client.ValidateClient;
+import cc.redpen.model.converter.GsonConverter;
+import cc.redpen.model.entity.ValidateResult;
+
+import java.util.List;
 
 public class ValidateLoader extends AsyncTaskLoader<ValidateResult> {
 
@@ -16,8 +19,13 @@ public class ValidateLoader extends AsyncTaskLoader<ValidateResult> {
     }
 
     @Override
+    protected void onStartLoading() {
+        forceLoad();
+    }
+
+    @Override
     public ValidateResult loadInBackground() {
-        String body = ValidateClient.request(null, document);
+        String body = ValidateClient.request("en", document);
         return GsonConverter.convert(body);
     }
 
