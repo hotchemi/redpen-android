@@ -1,4 +1,4 @@
-package cc.redpen.fragment;
+package cc.redpen.view.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,15 +15,14 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import cc.redpen.R;
 import cc.redpen.adapter.ValidateResultAdapter;
-import cc.redpen.model.entity.Error;
+import cc.redpen.helper.ClipboardManager;
 import cc.redpen.model.entity.ValidateResult;
 import cc.redpen.model.loader.ValidateLoader;
-
-import java.util.List;
+import com.melnykov.fab.FloatingActionButton;
 
 import static cc.redpen.Application.getContext;
 
-public class MainFragment extends Fragment implements LoaderManager.LoaderCallbacks<ValidateResult>, View.OnKeyListener {
+public class MainFragment extends Fragment implements LoaderManager.LoaderCallbacks<ValidateResult>, View.OnKeyListener, View.OnFocusChangeListener, View.OnClickListener {
 
     private static final String LOADER_ARGS_INPUT = "LOADER_ARGS_INPUT";
 
@@ -38,6 +37,9 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
 
     @InjectView(R.id.document_edittext)
     EditText documentEditText;
+
+    @InjectView(R.id.fab)
+    FloatingActionButton floatingActionButton;
 
     public MainFragment() {
     }
@@ -55,11 +57,8 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
         return rootView;
     }
 
-    private void setUpLayout() {
-        recyclerView.setHasFixedSize(true);
-        documentEditText.setOnKeyListener(this);
-        layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
     }
 
     @Override
@@ -86,6 +85,20 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
 
     @Override
     public void onLoaderReset(Loader<ValidateResult> loader) {
+    }
+
+    @Override
+    public void onClick(View v) {
+        documentEditText.setText(ClipboardManager.getText());
+    }
+
+    private void setUpLayout() {
+        floatingActionButton.setOnClickListener(this);
+        documentEditText.setOnKeyListener(this);
+        documentEditText.setOnFocusChangeListener(this);
+        layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
     }
 
     private void startLoader(String text) {

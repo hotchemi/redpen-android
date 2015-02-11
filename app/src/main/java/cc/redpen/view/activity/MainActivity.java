@@ -1,11 +1,12 @@
-package cc.redpen.activity;
+package cc.redpen.view.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import cc.redpen.R;
-import cc.redpen.fragment.MainFragment;
+import cc.redpen.view.fragment.MainFragment;
 
 public class MainActivity extends ActionBarActivity {
 
