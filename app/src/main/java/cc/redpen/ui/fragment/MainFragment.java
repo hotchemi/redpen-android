@@ -1,7 +1,6 @@
-package cc.redpen.view.fragment;
+package cc.redpen.ui.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+
+import com.melnykov.fab.FloatingActionButton;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import cc.redpen.R;
@@ -18,11 +20,10 @@ import cc.redpen.adapter.ValidateResultAdapter;
 import cc.redpen.helper.ClipboardManager;
 import cc.redpen.model.entity.ValidateResult;
 import cc.redpen.model.loader.ValidateLoader;
-import com.melnykov.fab.FloatingActionButton;
 
 import static cc.redpen.Application.getContext;
 
-public class MainFragment extends Fragment implements LoaderManager.LoaderCallbacks<ValidateResult>, View.OnKeyListener, View.OnFocusChangeListener, View.OnClickListener {
+public class MainFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<ValidateResult>, View.OnKeyListener, View.OnClickListener {
 
     private static final String LOADER_ARGS_INPUT = "LOADER_ARGS_INPUT";
 
@@ -58,10 +59,6 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
     }
 
     @Override
-    public void onFocusChange(View v, boolean hasFocus) {
-    }
-
-    @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
         if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
             String document = documentEditText.getText().toString();
@@ -89,13 +86,19 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
 
     @Override
     public void onClick(View v) {
-        documentEditText.setText(ClipboardManager.getText());
+        switch (v.getId()) {
+            case R.id.document_edittext:
+                break;
+            case R.id.fab:
+                documentEditText.setText(ClipboardManager.getText());
+                break;
+        }
     }
 
     private void setUpLayout() {
         floatingActionButton.setOnClickListener(this);
         documentEditText.setOnKeyListener(this);
-        documentEditText.setOnFocusChangeListener(this);
+        documentEditText.setOnClickListener(this);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);

@@ -12,8 +12,9 @@
                 android:id="@+id/document_edittext"
                 android:layout_marginTop="@dimen/edittext_vertical_margin"
                 android:layout_marginLeft="@dimen/edittext_horizonal_margin"
+                android:gravity="top"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:hint="@string/hint_edittext_mainfragment"/>
     </android.support.v7.widget.CardView>
