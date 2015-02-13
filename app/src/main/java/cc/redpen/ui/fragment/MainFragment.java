@@ -3,6 +3,7 @@ package cc.redpen.ui.fragment;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
@@ -42,6 +43,9 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
     @InjectView(R.id.fab)
     FloatingActionButton floatingActionButton;
 
+    @InjectView(R.id.swipe_refreshlayout)
+    SwipeRefreshLayout swipeRefreshLayout;
+
     public MainFragment() {
     }
 
@@ -78,6 +82,7 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
     public void onLoadFinished(Loader<ValidateResult> loader, ValidateResult data) {
         adapter = new ValidateResultAdapter(data.getErrors());
         recyclerView.setAdapter(adapter);
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
@@ -108,6 +113,8 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
         Bundle args = new Bundle();
         args.putString(LOADER_ARGS_INPUT, text);
         getLoaderManager().initLoader(LOADER_ID, args, this);
+        swipeRefreshLayout.setRefreshing(true);
+        swipeRefreshLayout.setColorSchemeResources(R.color.accent, R.color.tetal_500);
     }
 
 }
