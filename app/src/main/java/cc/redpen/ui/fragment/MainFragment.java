@@ -7,10 +7,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.EditText;
 import android.widget.TextView;
 import butterknife.ButterKnife;
@@ -66,6 +63,7 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.inject(this, rootView);
         setUpLayout();
+        setHasOptionsMenu(true);
         return rootView;
     }
 
@@ -99,9 +97,10 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         if (event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
-            InputMethodManagerHelper.hideSoftInputFromWindow(documentEditText);
             String document = documentEditText.getText().toString();
             startLoader(document);
+            InputMethodManagerHelper.hideSoftInputFromWindow(documentEditText);
+            actionBar.show();
         }
         return true;
     }
@@ -109,27 +108,40 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.document_edittext:
-                break;
             case R.id.fab:
                 documentEditText.setText(ClipboardHelper.getText());
                 break;
         }
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_main, menu);
+        super.onCreateOptionsMenu(menu,inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_add_sample:
+                documentEditText.setText(getString(R.string.sample_text));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void setUpLayout() {
         floatingActionButton.setOnClickListener(this);
-        documentEditText.setOnClickListener(this);
         documentEditText.setOnEditorActionListener(this);
-        layoutManager = new LinearLayoutManager(getActivity());
+        layoutManager = new LinearLayoutManager(activity);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
     }
 
     private void startLoader(String text) {
-        Bundle args = new Bundle();
-        args.putString(LOADER_ARGS_INPUT, text);
-        getLoaderManager().initLoader(LOADER_ID, args, this);
+        Bundle bundle = new Bundle();
+        bundle.putString(LOADER_ARGS_INPUT, text);
+        getLoaderManager().initLoader(LOADER_ID, bundle, this);
         swipeRefreshLayout.setRefreshing(true);
         swipeRefreshLayout.setColorSchemeResources(R.color.accent, R.color.tetal_500);
     }

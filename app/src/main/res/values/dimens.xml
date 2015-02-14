@@ -4,6 +4,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="edittext_vertical_margin">8dp</dimen>
     <dimen name="edittext_horizonal_margin">8dp</dimen>
-    <dimen name="document_edittext_height">160dp</dimen>
+    <dimen name="document_edittext_height">200dp</dimen>
     <dimen name="divider_margin">4dp</dimen>
 </resources>

@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.Menu;
-import android.view.MenuItem;
 import butterknife.ButterKnife;
 import cc.redpen.R;
 import cc.redpen.ui.fragment.MainFragment;
@@ -39,17 +37,6 @@ public class MainActivity extends ActionBarActivity implements DetectableKeyboar
     @Override
     public void onKeyboardHidden() {
         actionBar.show();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
     }
 
     private void setUpLayout() {
