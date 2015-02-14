@@ -4,14 +4,14 @@ import android.content.ClipData;
 
 import static cc.redpen.Application.getContext;
 
-public final class ClipboardManager {
+public final class ClipboardHelper {
 
     private static final String EMPTY = "";
 
     private static final android.content.ClipboardManager CLIPBOARD =
             (android.content.ClipboardManager) getContext().getSystemService(getContext().CLIPBOARD_SERVICE);
 
-    private ClipboardManager() {
+    private ClipboardHelper() {
     }
 
     public static CharSequence getText() {

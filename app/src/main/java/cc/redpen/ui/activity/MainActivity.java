@@ -4,13 +4,15 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import butterknife.ButterKnife;
 import cc.redpen.R;
 import cc.redpen.ui.fragment.MainFragment;
 import cc.redpen.ui.view.DetectableKeyboardLayout;
+
+import static cc.redpen.helper.IntentHelper.getExtraText;
 
 public class MainActivity extends ActionBarActivity implements DetectableKeyboardLayout.KeyboardListener {
 
@@ -21,9 +23,10 @@ public class MainActivity extends ActionBarActivity implements DetectableKeyboar
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setUpLayout();
+        String extraText = getExtraText(getIntent());
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, MainFragment.newInstance())
+                    .add(R.id.container, MainFragment.newInstance(extraText))
                     .commit();
         }
     }

@@ -6,6 +6,7 @@ import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import cc.redpen.R;
 import cc.redpen.adapter.ValidateResultAdapter;
-import cc.redpen.helper.ClipboardManager;
+import cc.redpen.helper.ClipboardHelper;
 import cc.redpen.helper.InputMethodManagerHelper;
 import cc.redpen.model.entity.ValidateResult;
 import cc.redpen.model.loader.ValidateLoader;
@@ -25,6 +26,8 @@ import com.melnykov.fab.FloatingActionButton;
 import static cc.redpen.Application.getContext;
 
 public class MainFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<ValidateResult>, View.OnClickListener, TextView.OnEditorActionListener {
+
+    private static final String KEY_EXTRA_TEXT = "key_extra_text";
 
     private static final String LOADER_ARGS_INPUT = "LOADER_ARGS_INPUT";
 
@@ -49,8 +52,12 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
     public MainFragment() {
     }
 
-    public static MainFragment newInstance() {
-        return new MainFragment();
+    public static MainFragment newInstance(String text) {
+        Bundle bundle = new Bundle();
+        bundle.putString(KEY_EXTRA_TEXT, text);
+        MainFragment fragment = new MainFragment();
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     @Override
@@ -60,6 +67,16 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
         ButterKnife.inject(this, rootView);
         setUpLayout();
         return rootView;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        String extraText = getArguments().getString(KEY_EXTRA_TEXT);
+        if (TextUtils.isEmpty(extraText)) {
+            return;
+        }
+        startLoader(extraText);
     }
 
     @Override
@@ -95,7 +112,7 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
             case R.id.document_edittext:
                 break;
             case R.id.fab:
-                documentEditText.setText(ClipboardManager.getText());
+                documentEditText.setText(ClipboardHelper.getText());
                 break;
         }
     }
