@@ -54,7 +54,7 @@ public class MainActivity extends ActionBarActivity implements DetectableKeyboar
         setSupportActionBar(toolBar);
         actionBar = getSupportActionBar();
         actionBar.setElevation(0);
-        DetectableKeyboardLayout root = ButterKnife.findById(this, R.id.keyboard_observer);
+        DetectableKeyboardLayout root = ButterKnife.findById(this, R.id.detectable_keyboard);
         root.setKeyboardListener(this);
     }
 

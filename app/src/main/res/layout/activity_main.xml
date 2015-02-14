@@ -1,6 +1,7 @@
 <cc.redpen.ui.view.DetectableKeyboardLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/keyboard_observer"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/detectable_keyboard"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
@@ -10,6 +11,7 @@
         android:id="@+id/tool_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:popupTheme="@style/popUpTheme"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize" />
 
