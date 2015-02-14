@@ -11,20 +11,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-
-import com.melnykov.fab.FloatingActionButton;
-
+import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import cc.redpen.R;
 import cc.redpen.adapter.ValidateResultAdapter;
 import cc.redpen.helper.ClipboardManager;
+import cc.redpen.helper.InputMethodManagerHelper;
 import cc.redpen.model.entity.ValidateResult;
 import cc.redpen.model.loader.ValidateLoader;
+import com.melnykov.fab.FloatingActionButton;
 
 import static cc.redpen.Application.getContext;
 
-public class MainFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<ValidateResult>, View.OnKeyListener, View.OnClickListener {
+public class MainFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<ValidateResult>, View.OnClickListener, TextView.OnEditorActionListener {
 
     private static final String LOADER_ARGS_INPUT = "LOADER_ARGS_INPUT";
 
@@ -63,16 +63,6 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
     }
 
     @Override
-    public boolean onKey(View v, int keyCode, KeyEvent event) {
-        if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-            String document = documentEditText.getText().toString();
-            startLoader(document);
-            return true;
-        }
-        return false;
-    }
-
-    @Override
     public Loader<ValidateResult> onCreateLoader(int id, Bundle args) {
         String document = args.getString(LOADER_ARGS_INPUT);
         return new ValidateLoader(getContext(), document);
@@ -90,6 +80,16 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
     }
 
     @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        if (event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+            InputMethodManagerHelper.hideSoftInputFromWindow(documentEditText);
+            String document = documentEditText.getText().toString();
+            startLoader(document);
+        }
+        return true;
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.document_edittext:
@@ -102,8 +102,8 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
 
     private void setUpLayout() {
         floatingActionButton.setOnClickListener(this);
-        documentEditText.setOnKeyListener(this);
         documentEditText.setOnClickListener(this);
+        documentEditText.setOnEditorActionListener(this);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);

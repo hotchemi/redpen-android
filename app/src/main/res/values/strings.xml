@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">RedPen</string>
     <string name="action_settings">Settings</string>
-    <string name="hint_edittext_mainfragment">Touch to type</string>
+    <string name="hint_document_edittext">Touch to type</string>
     <string name="label_sentence_textview">Sentence: %s</string>
     <string name="label_line_textview">Line: %s</string>
 </resources>
