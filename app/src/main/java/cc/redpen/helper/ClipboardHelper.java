@@ -1,6 +1,7 @@
 package cc.redpen.helper;
 
 import android.content.ClipData;
+import android.content.ClipboardManager;
 
 import static cc.redpen.Application.getContext;
 
@@ -8,14 +9,21 @@ public final class ClipboardHelper {
 
     private static final String EMPTY = "";
 
-    private static final android.content.ClipboardManager CLIPBOARD =
-            (android.content.ClipboardManager) getContext().getSystemService(getContext().CLIPBOARD_SERVICE);
-
     private ClipboardHelper() {
     }
 
+    private static ClipboardManager getClipboardManger() {
+       return (android.content.ClipboardManager) getContext().getSystemService(getContext().CLIPBOARD_SERVICE);
+    }
+
+    public static void copy(CharSequence text) {
+        ClipboardManager clipboard =getClipboardManger();
+        ClipData clip = ClipData.newPlainText("text", text);
+        clipboard.setPrimaryClip(clip);
+    }
+
     public static CharSequence getText() {
-        ClipData cd = CLIPBOARD.getPrimaryClip();
+        ClipData cd = getClipboardManger().getPrimaryClip();
         if (cd == null) {
             return EMPTY;
         }

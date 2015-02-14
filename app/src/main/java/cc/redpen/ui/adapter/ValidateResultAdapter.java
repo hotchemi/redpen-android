@@ -1,4 +1,4 @@
-package cc.redpen.adapter;
+package cc.redpen.ui.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

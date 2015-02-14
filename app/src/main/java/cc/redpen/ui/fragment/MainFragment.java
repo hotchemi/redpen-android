@@ -13,14 +13,16 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import cc.redpen.R;
-import cc.redpen.adapter.ValidateResultAdapter;
+import cc.redpen.ui.adapter.ValidateResultAdapter;
 import cc.redpen.helper.ClipboardHelper;
 import cc.redpen.helper.InputMethodManagerHelper;
 import cc.redpen.model.entity.ValidateResult;
 import cc.redpen.model.loader.ValidateLoader;
+import cc.redpen.util.ToastUtil;
 import com.melnykov.fab.FloatingActionButton;
 
 import static cc.redpen.Application.getContext;
+import static cc.redpen.helper.IntentHelper.createIntentWithText;
 
 public class MainFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<ValidateResult>, View.OnClickListener, TextView.OnEditorActionListener {
 
@@ -118,12 +120,22 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_main, menu);
-        super.onCreateOptionsMenu(menu,inflater);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_copy:
+                ClipboardHelper.copy(documentEditText.getText());
+                ToastUtil.show(R.string.message_copy);
+                break;
+            case R.id.action_clear:
+                documentEditText.setText("");
+                break;
+            case R.id.action_share:
+                startActivity(createIntentWithText(documentEditText.getText()));
+                break;
             case R.id.action_add_sample:
                 documentEditText.setText(getString(R.string.sample_text));
                 break;
