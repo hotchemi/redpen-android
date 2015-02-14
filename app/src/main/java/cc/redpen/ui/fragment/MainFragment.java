@@ -74,6 +74,7 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
         if (TextUtils.isEmpty(extraText)) {
             return;
         }
+        documentEditText.setText(extraText);
         startLoader(extraText);
     }
 
@@ -143,7 +144,7 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
         bundle.putString(LOADER_ARGS_INPUT, text);
         getLoaderManager().initLoader(LOADER_ID, bundle, this);
         swipeRefreshLayout.setRefreshing(true);
-        swipeRefreshLayout.setColorSchemeResources(R.color.accent, R.color.tetal_500);
+        swipeRefreshLayout.setColorSchemeResources(R.color.accent, R.color.accent_material_light);
     }
 
 }

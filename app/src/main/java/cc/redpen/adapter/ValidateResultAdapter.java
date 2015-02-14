@@ -22,14 +22,12 @@ public class ValidateResultAdapter extends RecyclerView.Adapter<ValidateResultAd
     private final List<Error> dataSet;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        @InjectView(R.id.linenumber_textview)
-        TextView lineNumberTextView;
 
         @InjectView(R.id.message_textview)
         TextView messageTextView;
 
-        @InjectView(R.id.sentence_textview)
-        TextView sentenceTextView;
+        @InjectView(R.id.result_textview)
+        TextView resultTextView;
 
         public ViewHolder(View view) {
             super(view);
@@ -53,8 +51,7 @@ public class ValidateResultAdapter extends RecyclerView.Adapter<ValidateResultAd
     public void onBindViewHolder(ViewHolder holder, int position) {
         Error item = dataSet.get(position);
         holder.messageTextView.setText(item.getMessage());
-        holder.lineNumberTextView.setText(getContext().getString(R.string.label_line_textview, item.getLineNum()));
-        holder.sentenceTextView.setText(getContext().getString(R.string.label_sentence_textview, item.getSentence()));
+        holder.resultTextView.setText(getContext().getString(R.string.label_result_textview, item.getLineNum(), item.getSentence()));
     }
 
     @Override

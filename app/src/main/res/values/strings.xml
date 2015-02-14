@@ -1,9 +1,8 @@
 <resources>
     <string name="app_name">RedPen</string>
-    <string name="action_add_sample">Add sample</string>
+    <string name="action_add_sample">Sample text</string>
     <string name="action_settings">Settings</string>
     <string name="hint_document_edittext">Touch to type</string>
-    <string name="label_sentence_textview">Sentence: %s</string>
-    <string name="label_line_textview">Line: %s</string>
+    <string name="label_result_textview">Line %1$s: %2$s</string>
     <string name="sample_text">Some software tools work in more than one machine, and such distributed (cluster)systems can handle huge data or tasks, because such software tools make use of large amount of computer resources.\nIn this article, we\'ll call a computer server that works as a member of a cluster an "instance". for example, each instance in distributed search engines stores the the fractions of data.\nSuch distriubuted systems need a component to merge the preliminary results from member instnaces.</string>
 </resources>

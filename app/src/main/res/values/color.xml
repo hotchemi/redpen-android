@@ -6,7 +6,6 @@
     <color name="dark_primary">#455A64</color>
     <!--   theme UI controls like checkboxes and text fields -->
     <color name="accent">#FF5252</color>
-    <color name="tetal_500">#009688</color>
     <color name="red_600">#E53935</color>
     <color name="red_400">#EF5350</color>
 </resources>
