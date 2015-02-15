@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--   your app branding color for the app bar -->
     <color name="primary">#607D8B</color>
-    <!--   darker variant for the status bar and contextual app bars -->
     <color name="dark_primary">#455A64</color>
-    <!--   theme UI controls like checkboxes and text fields -->
     <color name="accent">#FF5252</color>
     <color name="red_600">#E53935</color>
     <color name="red_100">#FFCDD2</color>
-    <color name="amber_500">#FFC107</color>
 </resources>

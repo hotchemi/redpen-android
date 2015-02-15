@@ -2,8 +2,6 @@ package cc.redpen.ui.fragment;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,25 +17,23 @@ import cc.redpen.event.KeyboardHiddenEvent;
 import cc.redpen.event.KeyboardShownEvent;
 import cc.redpen.helper.ClipboardHelper;
 import cc.redpen.helper.InputMethodManagerHelper;
+import cc.redpen.model.client.RedpenClient;
 import cc.redpen.model.entity.ValidateResult;
-import cc.redpen.model.loader.ValidateLoader;
 import cc.redpen.ui.activity.SettingsActivity;
 import cc.redpen.ui.adapter.ValidateResultAdapter;
 import cc.redpen.util.ToastUtil;
 import com.melnykov.fab.FloatingActionButton;
 import com.squareup.otto.Subscribe;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
-import static cc.redpen.Application.getContext;
 import static cc.redpen.helper.IntentHelper.createIntentWithText;
 import static cc.redpen.helper.LocaleHelper.getSampleResourceId;
 
-public class MainFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<ValidateResult>, View.OnClickListener, TextView.OnEditorActionListener, Runnable {
+public class MainFragment extends BaseFragment implements View.OnClickListener, TextView.OnEditorActionListener, Runnable, Callback<ValidateResult> {
 
     private static final String KEY_EXTRA_TEXT = "key_extra_text";
-
-    private static final String LOADER_ARGS_INPUT = "LOADER_ARGS_INPUT";
-
-    private static final int LOADER_ID = 21;
 
     private static final Handler HANDLER = new Handler();
 
@@ -86,7 +82,7 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
             return;
         }
         documentEditText.setText(extraText);
-        startLoader(extraText);
+        validate(extraText);
     }
 
     @Override
@@ -97,27 +93,10 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
     }
 
     @Override
-    public Loader<ValidateResult> onCreateLoader(int id, Bundle args) {
-        String document = args.getString(LOADER_ARGS_INPUT);
-        return new ValidateLoader(getContext(), document);
-    }
-
-    @Override
-    public void onLoadFinished(Loader<ValidateResult> loader, ValidateResult data) {
-        adapter = new ValidateResultAdapter(data.getErrors());
-        recyclerView.setAdapter(adapter);
-        swipeRefreshLayout.setRefreshing(false);
-    }
-
-    @Override
-    public void onLoaderReset(Loader<ValidateResult> loader) {
-    }
-
-    @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         if (event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
             String document = documentEditText.getText().toString();
-            startLoader(document);
+            validate(document);
             InputMethodManagerHelper.hideSoftInputFromWindow(documentEditText);
             actionBar.show();
         }
@@ -127,7 +106,7 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
     @Override
     public void onClick(View v) {
         String document = documentEditText.getText().toString();
-        startLoader(document);
+        validate(document);
         InputMethodManagerHelper.hideSoftInputFromWindow(documentEditText);
         actionBar.show();
     }
@@ -135,7 +114,22 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_main, menu);
-        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public void success(ValidateResult result, Response response) {
+        if (result.getErrors().isEmpty()) {
+            ToastUtil.show(R.string.message_validate_good);
+        }
+        adapter = new ValidateResultAdapter(result.getErrors());
+        recyclerView.setAdapter(adapter);
+        swipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void failure(RetrofitError error) {
+        ToastUtil.show(R.string.message_validate_failure);
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Subscribe
@@ -182,6 +176,7 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
 
     private void setUpLayout() {
         swipeRefreshLayout.setEnabled(false);
+        swipeRefreshLayout.setColorSchemeResources(R.color.accent, R.color.accent_material_light);
         documentEditText.setOnEditorActionListener(this);
         layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -191,12 +186,9 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
         floatingActionButton.hide();
     }
 
-    private void startLoader(String text) {
-        Bundle bundle = new Bundle();
-        bundle.putString(LOADER_ARGS_INPUT, text);
-        getLoaderManager().initLoader(LOADER_ID, bundle, this);
+    private void validate(String document) {
+        RedpenClient.validate(document, this);
         swipeRefreshLayout.setRefreshing(true);
-        swipeRefreshLayout.setColorSchemeResources(R.color.accent, R.color.accent_material_light);
     }
 
 }

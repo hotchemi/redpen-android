@@ -7,7 +7,7 @@ public class ValidateResult {
 
     private List<Error> errors;
 
-    public void setErrors(List<Error> errors) {
+    public ValidateResult(List<Error> errors) {
         this.errors = new ArrayList<>(errors);
     }
 

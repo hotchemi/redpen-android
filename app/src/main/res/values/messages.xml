@@ -1,3 +1,5 @@
 <resources>
     <string name="message_copy">Copied.</string>
+    <string name="message_validate_good">Good! There is no problem!</string>
+    <string name="message_validate_failure">Sorry, something wrong.</string>
 </resources>

@@ -2,5 +2,5 @@
 <resources>
     <string name="redpen_url">http://redpen.cc</string>
     <string name="github_issue_url">https://github.com/hotchemi/redpen-android/issues</string>
-    <string name="api_url">http://secure-badlands-5079.herokuapp.com/rest/document/validate</string>
+    <string name="api_url">http://secure-badlands-5079.herokuapp.com</string>
 </resources>
