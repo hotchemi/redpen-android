@@ -1,11 +1,15 @@
 package cc.redpen.ui.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import butterknife.ButterKnife;
 import cc.redpen.R;
+import cc.redpen.event.BusProvider;
+import cc.redpen.event.KeyboardHiddenEvent;
+import cc.redpen.event.KeyboardShownEvent;
 import cc.redpen.ui.fragment.MainFragment;
 import cc.redpen.ui.view.DetectableKeyboardLayout;
 
@@ -31,11 +35,13 @@ public class MainActivity extends ActionBarActivity implements DetectableKeyboar
     @Override
     public void onKeyboardShown() {
         actionBar.hide();
+        BusProvider.getInstance().post(new KeyboardShownEvent());
     }
 
     @Override
     public void onKeyboardHidden() {
         actionBar.show();
+        BusProvider.getInstance().post(new KeyboardHiddenEvent());
     }
 
     private void setUpLayout() {

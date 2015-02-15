@@ -8,4 +8,5 @@
     <color name="accent">#FF5252</color>
     <color name="red_600">#E53935</color>
     <color name="red_100">#FFCDD2</color>
+    <color name="amber_500">#FFC107</color>
 </resources>

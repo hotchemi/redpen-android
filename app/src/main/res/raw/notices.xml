@@ -6,28 +6,30 @@
         <copyright>Copyright 2014 Square, Inc.</copyright>
         <license>Apache Software License 2.0</license>
     </notice>
-
+    <notice>
+        <name>Otto</name>
+        <url>https://github.com/square/otto</url>
+        <copyright>Copyright 2012 Square, Inc.</copyright>
+        <license>Apache Software License 2.0</license>
+    </notice>
     <notice>
         <name>Butter Knife</name>
         <url>http://jakewharton.github.io/butterknife</url>
         <copyright>Copyright 2013 Jake Wharton</copyright>
         <license>Apache Software License 2.0</license>
     </notice>
-
     <notice>
         <name>Gson</name>
         <url>https://code.google.com/p/google-gson</url>
         <copyright>Copyright 2008-2011 Google Inc.</copyright>
         <license>Apache Software License 2.0</license>
     </notice>
-
     <notice>
         <name>FloatingActionButton</name>
         <url>https://github.com/makovkastar/FloatingActionButton</url>
         <copyright>Copyright (c) 2014 Oleksandr Melnykov</copyright>
         <license>MIT License</license>
     </notice>
-
     <notice>
         <name>LicensesDialog</name>
         <url>https://github.com/PSDev/LicensesDialog</url>
