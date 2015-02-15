@@ -22,7 +22,7 @@ public class ValidateClient {
                 .add("document", document)
                 .build();
         Request request = new Request.Builder()
-                .url(Application.getContext().getString(R.string.redpen_url))
+                .url(Application.getContext().getString(R.string.api_url))
                 .post(requestBody)
                 .build();
         String result = null;

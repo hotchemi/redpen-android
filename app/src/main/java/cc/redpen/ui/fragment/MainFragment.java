@@ -13,6 +13,7 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import cc.redpen.R;
+import cc.redpen.ui.activity.SettingActivity;
 import cc.redpen.ui.adapter.ValidateResultAdapter;
 import cc.redpen.helper.ClipboardHelper;
 import cc.redpen.helper.InputMethodManagerHelper;
@@ -138,6 +139,9 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
                 break;
             case R.id.action_add_sample:
                 documentEditText.setText(getString(R.string.sample_text));
+                break;
+            case R.id.action_settings:
+                startActivity(SettingActivity.createIntent(activity));
                 break;
         }
         return super.onOptionsItemSelected(item);

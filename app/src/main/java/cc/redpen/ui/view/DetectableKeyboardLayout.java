@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Point;
 import android.graphics.Rect;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.Display;
 import android.widget.LinearLayout;
@@ -22,7 +21,6 @@ public class DetectableKeyboardLayout extends LinearLayout {
 
     private static final Point POINT = new Point();
 
-    @NonNull
     private KeyboardListener listener;
 
     public DetectableKeyboardLayout(Context context, AttributeSet attrs) {

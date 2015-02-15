@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        package="cc.redpen">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="cc.redpen">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-            android:allowBackup="false"
             android:name=".Application"
+            android:allowBackup="false"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:theme="@style/AppTheme">
         <activity
                 android:name=".ui.activity.MainActivity"
-                android:windowSoftInputMode="stateAlwaysHidden"
-                android:label="@string/app_name">
+                android:label="@string/app_name"
+                android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND"/>
+
                 <category android:name="android.intent.category.DEFAULT"/>
+
                 <data android:mimeType="text/*"/>
             </intent-filter>
+        </activity>
+        <activity
+                android:name=".ui.activity.SettingActivity"
+                android:label="@string/label_setting_activity"
+                android:theme="@style/SettingTheme"
+                android:exported="false">
         </activity>
     </application>
 

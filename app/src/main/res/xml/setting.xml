@@ -1,0 +1,24 @@
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/preference_title_application">
+        <SwitchPreference
+                android:title="@string/label_setting_language"
+                android:key="@string/label_setting_language"
+                android:switchTextOff="Ja"
+                android:switchTextOn="En" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/preference_title_information">
+
+        <PreferenceScreen
+                android:title="@string/label_setting_licence"
+                android:key="@string/label_setting_licence"
+                android:summary="@string/label_setting_licence_description"/>
+
+        <PreferenceScreen
+                android:title="@string/label_setting_version"
+                android:key="@string/label_setting_version"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

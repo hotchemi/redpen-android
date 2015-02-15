@@ -1,6 +1,5 @@
-<cc.redpen.ui.view.DetectableKeyboardLayout
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/detectable_keyboard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
@@ -14,4 +13,4 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-</cc.redpen.ui.view.DetectableKeyboardLayout>
+</LinearLayout>

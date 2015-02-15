@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="redpen_url">http://secure-badlands-5079.herokuapp.com/rest/document/validate</string>
+    <string name="api_url">http://secure-badlands-5079.herokuapp.com/rest/document/validate</string>
 </resources>

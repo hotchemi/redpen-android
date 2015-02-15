@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import butterknife.ButterKnife;
 import cc.redpen.R;
 import cc.redpen.ui.fragment.MainFragment;
@@ -40,7 +39,7 @@ public class MainActivity extends ActionBarActivity implements DetectableKeyboar
     }
 
     private void setUpLayout() {
-        Toolbar toolBar = ButterKnife.findById(this, R.id.tool_bar);
+        Toolbar toolBar = ButterKnife.findById(this, R.id.toolbar);
         setSupportActionBar(toolBar);
         actionBar = getSupportActionBar();
         actionBar.setElevation(0);

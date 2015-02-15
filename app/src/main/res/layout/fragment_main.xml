@@ -11,7 +11,7 @@
         <EditText
                 android:id="@+id/document_edittext"
                 android:layout_marginTop="@dimen/edittext_vertical_margin"
-                android:layout_marginLeft="@dimen/edittext_horizonal_margin"
+                android:layout_marginLeft="@dimen/edittext_horizontal_margin"
                 android:gravity="top"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
