@@ -5,3 +5,5 @@
 *.iml
 .DS_Store
 /build
+
+release-keystore.jks
