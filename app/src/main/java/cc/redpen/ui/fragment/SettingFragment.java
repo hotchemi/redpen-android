@@ -9,8 +9,10 @@ import android.preference.PreferenceScreen;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import cc.redpen.R;
+import cc.redpen.util.MetaDataUtil;
 import de.psdev.licensesdialog.LicensesDialogFragment;
 
+import static cc.redpen.Application.getContext;
 import static cc.redpen.helper.IntentHelper.createIntentWithUrl;
 import static cc.redpen.helper.ViewFindHelper.getPreference;
 
@@ -70,6 +72,8 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
         aboutScreen.setOnPreferenceClickListener(this);
         PreferenceScreen licenceScreen = getPreference(this, getString(R.string.label_setting_licence));
         licenceScreen.setOnPreferenceClickListener(this);
+        PreferenceScreen versionScreen = getPreference(this, getString(R.string.label_setting_version));
+        versionScreen.setSummary(MetaDataUtil.getVersionName(getContext()));
         ListPreference languagePref = getPreference(this, getString(R.string.label_setting_language));
         languagePref.setSummary(languagePref.getEntry());
     }
