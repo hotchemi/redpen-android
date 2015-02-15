@@ -7,12 +7,6 @@
         <license>Apache Software License 2.0</license>
     </notice>
     <notice>
-        <name>OkHttp</name>
-        <url>https://github.com/square/okhttp</url>
-        <copyright>Copyright 2014 Square, Inc.</copyright>
-        <license>Apache Software License 2.0</license>
-    </notice>
-    <notice>
         <name>Otto</name>
         <url>https://github.com/square/otto</url>
         <copyright>Copyright 2012 Square, Inc.</copyright>

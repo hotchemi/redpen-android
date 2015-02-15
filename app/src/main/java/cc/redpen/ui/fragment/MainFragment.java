@@ -6,6 +6,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.*;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -130,6 +131,7 @@ public class MainFragment extends BaseFragment implements View.OnClickListener, 
     public void failure(RetrofitError error) {
         ToastUtil.show(R.string.message_validate_failure);
         swipeRefreshLayout.setRefreshing(false);
+        Log.w(MainFragment.class.getSimpleName(), error);
     }
 
     @Subscribe
