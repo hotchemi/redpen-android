@@ -24,6 +24,7 @@ import com.melnykov.fab.FloatingActionButton;
 
 import static cc.redpen.Application.getContext;
 import static cc.redpen.helper.IntentHelper.createIntentWithText;
+import static cc.redpen.helper.LocaleHelper.getSampleResourceId;
 
 public class MainFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<ValidateResult>, View.OnClickListener, TextView.OnEditorActionListener {
 
@@ -136,7 +137,7 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
                 startActivity(createIntentWithText(documentEditText.getText()));
                 break;
             case R.id.action_add_sample:
-                documentEditText.setText(getString(R.string.sample_text_en));
+                documentEditText.setText(getSampleResourceId(getApplicationContext()));
                 break;
             case R.id.action_settings:
                 startActivity(SettingsActivity.createIntent(activity));

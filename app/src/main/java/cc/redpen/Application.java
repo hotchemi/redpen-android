@@ -16,7 +16,7 @@ public class Application extends android.app.Application {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
-        String locale = LocaleHelper.getLocaleValueForPreference(context);
+        String locale = LocaleHelper.getLanguage(context);
         PreferenceHelper.setLanguage(context, locale);
     }
 

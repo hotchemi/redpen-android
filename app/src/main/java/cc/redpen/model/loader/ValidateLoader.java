@@ -2,9 +2,11 @@ package cc.redpen.model.loader;
 
 import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
-import cc.redpen.model.client.ValidateClient;
 import cc.redpen.model.converter.GsonConverter;
 import cc.redpen.model.entity.ValidateResult;
+
+import static cc.redpen.helper.PreferenceHelper.getLanguage;
+import static cc.redpen.model.client.ValidateClient.request;
 
 public class ValidateLoader extends AsyncTaskLoader<ValidateResult> {
 
@@ -22,7 +24,7 @@ public class ValidateLoader extends AsyncTaskLoader<ValidateResult> {
 
     @Override
     public ValidateResult loadInBackground() {
-        String body = ValidateClient.request("en", document);
+        String body = request(getLanguage(getContext()), document);
         return GsonConverter.convert(body);
     }
 

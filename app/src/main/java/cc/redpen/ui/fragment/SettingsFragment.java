@@ -14,7 +14,7 @@ import de.psdev.licensesdialog.LicensesDialogFragment;
 
 import static cc.redpen.Application.getContext;
 import static cc.redpen.helper.IntentHelper.createIntentWithUrl;
-import static cc.redpen.helper.ViewFindHelper.getPreference;
+import static cc.redpen.helper.ViewFinder.getPreference;
 
 public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener, Preference.OnPreferenceClickListener {
 
