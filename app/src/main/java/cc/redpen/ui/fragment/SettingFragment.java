@@ -6,7 +6,10 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBarActivity;
 import cc.redpen.R;
+import de.psdev.licensesdialog.LicensesDialogFragment;
 
 import static cc.redpen.helper.IntentHelper.createIntentWithUrl;
 import static cc.redpen.helper.ViewFindHelper.getPreference;
@@ -51,9 +54,15 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
                 startActivity(createIntentWithUrl(getString(R.string.redpen_url)));
                 break;
             case R.string.label_setting_licence:
+                LicensesDialogFragment fragment = LicensesDialogFragment.newInstance(R.raw.licences, false, true);
+                fragment.show(getSupportFragmentManager(), null);
                 break;
         }
         return false;
+    }
+
+    private FragmentManager getSupportFragmentManager() {
+        return ((ActionBarActivity) getActivity()).getSupportFragmentManager();
     }
 
     private void setUpLayout() {
