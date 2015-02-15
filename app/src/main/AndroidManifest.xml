@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".ui.activity.SettingActivity"
+                android:name=".ui.activity.SettingsActivity"
                 android:label="@string/title_setting_activity"
                 android:theme="@style/SettingTheme"
                 android:exported="false">

@@ -17,6 +17,11 @@
                 android:summary="@string/redpen_url"/>
 
         <PreferenceScreen
+                android:title="@string/label_setting_feedback"
+                android:key="@string/label_setting_feedback"
+                android:summary="@string/label_setting_feedback_summary"/>
+
+        <PreferenceScreen
                 android:title="@string/label_setting_licence"
                 android:key="@string/label_setting_licence"
                 android:summary="@string/label_setting_licence_summary"/>

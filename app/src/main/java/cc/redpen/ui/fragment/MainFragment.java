@@ -13,7 +13,7 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import cc.redpen.R;
-import cc.redpen.ui.activity.SettingActivity;
+import cc.redpen.ui.activity.SettingsActivity;
 import cc.redpen.ui.adapter.ValidateResultAdapter;
 import cc.redpen.helper.ClipboardHelper;
 import cc.redpen.helper.InputMethodManagerHelper;
@@ -141,7 +141,7 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
                 documentEditText.setText(getString(R.string.sample_text));
                 break;
             case R.id.action_settings:
-                startActivity(SettingActivity.createIntent(activity));
+                startActivity(SettingsActivity.createIntent(activity));
                 break;
         }
         return super.onOptionsItemSelected(item);

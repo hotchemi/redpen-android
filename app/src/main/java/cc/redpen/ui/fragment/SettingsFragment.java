@@ -16,19 +16,19 @@ import static cc.redpen.Application.getContext;
 import static cc.redpen.helper.IntentHelper.createIntentWithUrl;
 import static cc.redpen.helper.ViewFindHelper.getPreference;
 
-public class SettingFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener, Preference.OnPreferenceClickListener {
+public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener, Preference.OnPreferenceClickListener {
 
-    public static SettingFragment newInstance() {
-        return new SettingFragment();
+    public static SettingsFragment newInstance() {
+        return new SettingsFragment();
     }
 
-    public SettingFragment() {
+    public SettingsFragment() {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.setting);
+        addPreferencesFromResource(R.xml.settings);
         setUpLayout();
     }
 
@@ -55,6 +55,9 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
             case R.string.label_setting_about:
                 startActivity(createIntentWithUrl(getString(R.string.redpen_url)));
                 break;
+            case R.string.label_setting_feedback:
+                startActivity(createIntentWithUrl(getString(R.string.github_issue_url)));
+                break;
             case R.string.label_setting_licence:
                 LicensesDialogFragment fragment = LicensesDialogFragment.newInstance(R.raw.licences, false, true);
                 fragment.show(getSupportFragmentManager(), null);
@@ -68,14 +71,16 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
     }
 
     private void setUpLayout() {
+        ListPreference languagePref = getPreference(this, getString(R.string.label_setting_language));
+        languagePref.setSummary(languagePref.getEntry());
         PreferenceScreen aboutScreen = getPreference(this, getString(R.string.label_setting_about));
         aboutScreen.setOnPreferenceClickListener(this);
+        PreferenceScreen feedbackScreen = getPreference(this, getString(R.string.label_setting_feedback));
+        feedbackScreen.setOnPreferenceClickListener(this);
         PreferenceScreen licenceScreen = getPreference(this, getString(R.string.label_setting_licence));
         licenceScreen.setOnPreferenceClickListener(this);
         PreferenceScreen versionScreen = getPreference(this, getString(R.string.label_setting_version));
         versionScreen.setSummary(MetaDataUtil.getVersionName(getContext()));
-        ListPreference languagePref = getPreference(this, getString(R.string.label_setting_language));
-        languagePref.setSummary(languagePref.getEntry());
     }
 
 }

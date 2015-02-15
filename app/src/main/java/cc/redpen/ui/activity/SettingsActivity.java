@@ -8,12 +8,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import butterknife.ButterKnife;
 import cc.redpen.R;
-import cc.redpen.ui.fragment.SettingFragment;
+import cc.redpen.ui.fragment.SettingsFragment;
 
-public class SettingActivity extends ActionBarActivity {
+public class SettingsActivity extends ActionBarActivity {
 
     public static Intent createIntent(Context context) {
-        return new Intent(context, SettingActivity.class);
+        return new Intent(context, SettingsActivity.class);
     }
 
     @Override
@@ -23,10 +23,9 @@ public class SettingActivity extends ActionBarActivity {
         Toolbar toolBar = ButterKnife.findById(this, R.id.toolbar);
         setSupportActionBar(toolBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .replace(R.id.container, SettingFragment.newInstance()).commit();
+                    .replace(R.id.container, SettingsFragment.newInstance()).commit();
         }
     }
 

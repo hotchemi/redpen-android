@@ -17,9 +17,11 @@
     <string name="preference_label_application">Application</string>
     <string name="preference_label_information">Information</string>
     <string name="label_setting_about">About redpen</string>
+    <string name="label_setting_feedback">Feedback</string>
     <string name="label_setting_licence">Licence</string>
     <string name="label_setting_version">Version</string>
     <string name="label_setting_language">Language</string>
-    <string name="label_setting_licence_summary">Show open source Licence</string>
+    <string name="label_setting_licence_summary">Show open source licence</string>
+    <string name="label_setting_feedback_summary">Welcome any feedback via github!</string>
     <string name="label_dialog_title_language">Select your language</string>
 </resources>
