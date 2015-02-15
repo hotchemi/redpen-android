@@ -113,7 +113,7 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fab:
-                documentEditText.setText(ClipboardHelper.getText());
+                documentEditText.setText(ClipboardHelper.getText(getApplicationContext()));
                 break;
         }
     }
@@ -128,7 +128,7 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_copy:
-                ClipboardHelper.copy(documentEditText.getText());
+                ClipboardHelper.copy(getApplicationContext(), documentEditText.getText());
                 ToastUtil.show(R.string.message_copy);
                 break;
             case R.id.action_clear:

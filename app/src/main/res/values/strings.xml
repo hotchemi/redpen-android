@@ -16,9 +16,10 @@
     <string name="label_setting_activity">Setting</string>
     <string name="preference_title_application">Application</string>
     <string name="preference_title_language">Language</string>
+    <string name="preference_title_information">Information</string>
     <string name="label_setting_licence">Licence</string>
     <string name="label_setting_version">Version</string>
     <string name="label_setting_language">Language</string>
-    <string name="label_setting_licence_description">Show OSS Licence.</string>
-    <string name="preference_title_information">Information</string>
+    <string name="label_setting_licence_summary">Show open source Licence.</string>
+    <string name="label_dialog_title_language">Select your language</string>
 </resources>
