@@ -187,6 +187,9 @@ public class MainFragment extends BaseFragment implements View.OnClickListener, 
     }
 
     private void validate(String document) {
+        if (TextUtils.isEmpty(document)) {
+            return;
+        }
         RedpenClient.validate(document, this);
         swipeRefreshLayout.setRefreshing(true);
     }

@@ -2,13 +2,12 @@ package cc.redpen.helper;
 
 import android.preference.PreferenceFragment;
 
-public final class ViewFinder {
+public final class ViewHelper {
 
-    private ViewFinder() {
+    private ViewHelper() {
     }
 
     public static <T> T getPreference(PreferenceFragment fragment, CharSequence key) {
         return (T) fragment.getPreferenceScreen().findPreference(key);
     }
-
 }
