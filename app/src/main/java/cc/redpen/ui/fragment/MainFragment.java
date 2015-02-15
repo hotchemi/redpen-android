@@ -150,9 +150,10 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
     private void setUpLayout() {
         floatingActionButton.setOnClickListener(this);
         documentEditText.setOnEditorActionListener(this);
-        layoutManager = new LinearLayoutManager(activity);
+        layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
+        swipeRefreshLayout.setEnabled(false);
     }
 
     private void startLoader(String text) {
