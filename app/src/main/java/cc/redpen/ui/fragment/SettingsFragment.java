@@ -59,7 +59,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                 startActivity(createIntentWithUrl(getString(R.string.github_issue_url)));
                 break;
             case R.string.label_setting_licence:
-                LicensesDialogFragment fragment = LicensesDialogFragment.newInstance(R.raw.licences, false, true);
+                LicensesDialogFragment fragment = LicensesDialogFragment.newInstance(R.raw.notices, false, true);
                 fragment.show(getSupportFragmentManager(), null);
                 break;
         }

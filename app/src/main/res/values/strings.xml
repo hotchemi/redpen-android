@@ -8,9 +8,10 @@
     <string name="action_copy">Copy</string>
     <string name="action_share">Share</string>
     <string name="action_settings">Settings</string>
-    <string name="hint_document_edittext">Touch to type...</string>
+    <string name="hint_document_edittext">Copy and paste a document here...</string>
     <string name="label_result_textview">Line %1$s: %2$s</string>
-    <string name="sample_text">Some software tools work in more than one machine, and such distributed (cluster)systems can handle huge data or tasks, because such software tools make use of large amount of computer resources.\nIn this article, we\'ll call a computer server that works as a member of a cluster an "instance". for example, each instance in distributed search engines stores the the fractions of data.\nSuch distriubuted systems need a component to merge the preliminary results from member instnaces.</string>
+    <string name="sample_text_en">Some software tools work in more than one machine, and such distributed (cluster)systems can handle huge data or tasks, because such software tools make use of large amount of computer resources.\nIn this article, we\'ll call a computer server that works as a member of a cluster an "instance". for example, each instance in distributed search engines stores the the fractions of data.\nSuch distriubuted systems need a component to merge the preliminary results from member instnaces.</string>
+    <string name="sample_text_ja">最近利用されているソフトウェアの中には複数の計算機上で動作（分散）するものが多く存在し、このような分散ソフトウェアは複数の計算機で動作することで大量のデータを扱えたり，高負荷な状況に対処できたりします。\n本稿では,複数の計算機（クラスタ）でで動作する各サーバーを「インスタンス」と呼びまます。\nたとえば検索エンジンやデータベースではインデックスを複数のインスタンスで分割して保持します。\nこのような場合、各インデクスの結果をマージしてclientプログラムに渡す機構が必要となります。</string>
 
     <!-- SettingsActivity -->
     <string name="title_settings_activity">Settings</string>

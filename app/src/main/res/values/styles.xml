@@ -16,7 +16,7 @@
     <style name="popUpTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:textColorPrimary">@color/abc_primary_text_material_dark</item>
         <item name="actionMenuTextColor">@color/abc_primary_text_material_dark</item>
-        <item name="android:background">@color/primary</item>
+        <item name="android:background">@color/dark_primary</item>
     </style>
 
     <style name="SettingTheme" parent="AppTheme">

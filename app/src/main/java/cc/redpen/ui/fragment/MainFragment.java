@@ -13,12 +13,12 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import cc.redpen.R;
-import cc.redpen.ui.activity.SettingsActivity;
-import cc.redpen.ui.adapter.ValidateResultAdapter;
 import cc.redpen.helper.ClipboardHelper;
 import cc.redpen.helper.InputMethodManagerHelper;
 import cc.redpen.model.entity.ValidateResult;
 import cc.redpen.model.loader.ValidateLoader;
+import cc.redpen.ui.activity.SettingsActivity;
+import cc.redpen.ui.adapter.ValidateResultAdapter;
 import cc.redpen.util.ToastUtil;
 import com.melnykov.fab.FloatingActionButton;
 
@@ -61,8 +61,7 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.inject(this, rootView);
         setUpLayout();
@@ -111,11 +110,10 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.fab:
-                documentEditText.setText(ClipboardHelper.getText(getApplicationContext()));
-                break;
-        }
+        String document = documentEditText.getText().toString();
+        startLoader(document);
+        InputMethodManagerHelper.hideSoftInputFromWindow(documentEditText);
+        actionBar.show();
     }
 
     @Override
@@ -138,7 +136,7 @@ public class MainFragment extends BaseFragment implements LoaderManager.LoaderCa
                 startActivity(createIntentWithText(documentEditText.getText()));
                 break;
             case R.id.action_add_sample:
-                documentEditText.setText(getString(R.string.sample_text));
+                documentEditText.setText(getString(R.string.sample_text_en));
                 break;
             case R.id.action_settings:
                 startActivity(SettingsActivity.createIntent(activity));
