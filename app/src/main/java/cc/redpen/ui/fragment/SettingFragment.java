@@ -8,6 +8,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import cc.redpen.R;
 
+import static cc.redpen.helper.IntentHelper.createIntentWithUrl;
 import static cc.redpen.helper.ViewFindHelper.getPreference;
 
 public class SettingFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener, Preference.OnPreferenceClickListener {
@@ -46,17 +47,21 @@ public class SettingFragment extends PreferenceFragment implements SharedPrefere
     @Override
     public boolean onPreferenceClick(Preference preference) {
         switch (preference.getTitleRes()) {
+            case R.string.label_setting_about:
+                startActivity(createIntentWithUrl(getString(R.string.redpen_url)));
+                break;
             case R.string.label_setting_licence:
-
                 break;
         }
         return false;
     }
 
     private void setUpLayout() {
+        PreferenceScreen aboutScreen = getPreference(this, getString(R.string.label_setting_about));
+        aboutScreen.setOnPreferenceClickListener(this);
         PreferenceScreen licenceScreen = getPreference(this, getString(R.string.label_setting_licence));
         licenceScreen.setOnPreferenceClickListener(this);
-        ListPreference languagePref = getPreference(this, getString(R.string.preference_title_language));
+        ListPreference languagePref = getPreference(this, getString(R.string.label_setting_language));
         languagePref.setSummary(languagePref.getEntry());
     }
 

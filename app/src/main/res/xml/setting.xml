@@ -1,6 +1,6 @@
 <PreferenceScreen
         xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory android:title="@string/preference_title_application">
+    <PreferenceCategory android:title="@string/preference_label_application">
         <ListPreference
                 android:key="@string/label_setting_language"
                 android:title="@string/label_setting_language"
@@ -9,7 +9,13 @@
                 android:dialogTitle="@string/label_dialog_title_language"/>
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/preference_title_information">
+    <PreferenceCategory android:title="@string/preference_label_information">
+
+        <PreferenceScreen
+                android:title="@string/label_setting_about"
+                android:key="@string/label_setting_about"
+                android:summary="@string/redpen_url"/>
+
         <PreferenceScreen
                 android:title="@string/label_setting_licence"
                 android:key="@string/label_setting_licence"

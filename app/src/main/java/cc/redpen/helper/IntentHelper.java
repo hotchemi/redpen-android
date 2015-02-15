@@ -1,11 +1,17 @@
 package cc.redpen.helper;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 public final class IntentHelper {
 
     private IntentHelper() {
+    }
+
+    public static Intent createIntentWithUrl(String url) {
+        Uri uri = Uri.parse(url);
+        return new Intent(Intent.ACTION_VIEW, uri);
     }
 
     public static Intent createIntentWithText(CharSequence text) {

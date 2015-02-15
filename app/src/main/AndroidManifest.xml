@@ -29,7 +29,7 @@
         </activity>
         <activity
                 android:name=".ui.activity.SettingActivity"
-                android:label="@string/label_setting_activity"
+                android:label="@string/title_setting_activity"
                 android:theme="@style/SettingTheme"
                 android:exported="false">
         </activity>
